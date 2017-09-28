@@ -1,0 +1,4 @@
+gunicorn
+boto3
+django
+MySQL-python

@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    ## Native
+    'blog',
+
+    ## 3rd party
+    'mediumeditor',
+    'ckeditor',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +62,7 @@ ROOT_URLCONF = 'myblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +74,12 @@ TEMPLATES = [
         },
     },
 ]
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gs.GSBotoStorage'
+GS_ACCESS_KEY_ID = os.environ["GS_ACCESS_KEY_ID"]
+GS_SECRET_ACCESS_KEY = os.environ['GS_SECRET_ACCESS_KEY']
+GS_BUCKET_NAME = 'blogmedia'
 
 WSGI_APPLICATION = 'myblog.wsgi.application'
 
@@ -122,4 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+# Add these new lines
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

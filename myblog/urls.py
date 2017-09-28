@@ -16,6 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+
+from blog import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+	url(r'^blog/$', views.detail, name ='details'),
+    url(r'^blog/(?P<post_id>\d+)/$', views.post, name ='post'),
 ]
